@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,11 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/dashboard', function(){
     return view('auth.dashboard');
 })->middleware('auth');
+
+Route::get('/crud', function(){
+    return view('customerfile.crud');
+});
+
+Route::get('/edit/{customera}', [CustomerController::class, 'edit']);
+Route::get('/delete/{customera}', [CustomerController::class, 'destroy']);
+    

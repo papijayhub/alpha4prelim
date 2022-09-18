@@ -22,7 +22,7 @@
             <label for="email">Email</label>
             <input type="email" name="email" id="email" class="form-control">
             @error('email')
-            <p class="text-danger">{{message}}</p>
+            <p class="text-danger">{{$message}}</p>
                 
             @enderror
         </div>
@@ -31,7 +31,7 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" class="form-control">
             @error('password')
-            <p class="text-danger">{{message}}</p>
+            <p class="text-danger">{{$message}}</p>
                 
             @enderror
         </div>
