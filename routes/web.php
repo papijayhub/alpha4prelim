@@ -30,14 +30,17 @@ Route::get('/verification/{user}/{token}', [AuthController::class, 'verification
 Route::get('/logout', [AuthController::class, 'logout']);
 
 
-Route::get('/dashboard', function(){
-    return view('auth.dashboard');
-})->middleware('auth');
 
-Route::get('/crud', function(){
-    return view('customerfile.crud');
-});
-
-Route::get('/edit/{customera}', [CustomerController::class, 'edit']);
-Route::get('/delete/{customera}', [CustomerController::class, 'destroy']);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard', function(){
+        return view('auth.dashboard');
+    })->middleware('auth');
     
+    Route::get('/crud', function(){
+        return view('customerfile.crud');
+    })->middleware('auth');
+    
+    Route::get('/edit/{customera}', [CustomerController::class, 'edit'])->middleware('auth');
+    Route::get('/delete/{customera}', [CustomerController::class, 'destroy'])->middleware('auth');
+    
+});
