@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Crudfile;
 
 use Livewire\Component;
 use App\Models\Customer;
+use App\Events\UserLog;
 
 class Create extends Component
 {
@@ -20,7 +21,7 @@ class Create extends Component
             'assisted'                  =>          ['required', 'string', 'max:255'],
         ]);
 
-        Customer::create([
+        $customer = Customer::create([
             'name'                  =>      $this->name,
             'email'                 =>      $this->email,
             'description'        =>      $this->description,
@@ -29,6 +30,9 @@ class Create extends Component
             'amountbalance'              =>      $this->amountbalance,
             'assisted'              =>      $this->assisted
         ]);
+
+        $log_entry = 'Added a new Customer' . $customer->name . 'with the ID of ' . $customer->id;
+        event(new UserLog($log_entry));
 
         return redirect('/crud')->with('message', 'Added Successfully');
     }

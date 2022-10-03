@@ -17,6 +17,10 @@
           <a class="nav-link text-white-50" href="/crud">CRUD</a>
         </li>
 
+        <li class="nav-item px-5">
+          <a class="nav-link text-white-50" href="/logs">LOGS</a>
+        </li>
+
         <li class="nav-item px-5 ml-auto p-2">
             <a href="{{'/logout'}}">
                 <button class="btn btn-primary">

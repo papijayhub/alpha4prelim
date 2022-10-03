@@ -6,7 +6,10 @@
     <h1 class="text-center">
     Register
     </h1>
-    <form action="{{'/register'}}" method="POST">
+
+        <div class="container d-flex mt-5 justify-content-center align-items-center w-auto">
+        <div class="card d-flex w-50 p-4 bg-info">
+        <form action="{{'/register'}}" method="POST">
         {{csrf_field()}}
 
         <div class="form-group mb-3">
@@ -53,6 +56,11 @@
         </div>
 
     </form>
+        </div>
+        </div>
+
+
+    
 </div>
 
 @endsection

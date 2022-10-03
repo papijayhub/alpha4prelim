@@ -13,8 +13,11 @@
 
 
     <h1 class="text-center">
-    Welcome
+    LOGIN
     </h1>
+    <div class="container d-flex mt-5 justify-content-center align-items-center w-auto">
+
+    <div class="card d-flex w-50 p-4 bg-info">
     <form action="{{'/'}}" method="POST">
         {{csrf_field()}}
 
@@ -23,7 +26,7 @@
             <input type="email" name="email" id="email" class="form-control">
             @error('email')
             <p class="text-danger">{{$message}}</p>
-                
+
             @enderror
         </div>
 
@@ -44,6 +47,9 @@
         </div>
 
     </form>
+</div>
+
+</div>
 </div>
 
 @endsection

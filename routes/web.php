@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,16 +32,28 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 
 
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
+//     Route::get('/dashboard', function(){
+//         return view('auth.dashboard');
+//     })->middleware('auth');
+    
+//     Route::get('/crud', function(){
+//         return view('customerfile.crud');
+//     })->middleware('auth');
+    
+//     Route::get('/edit/{customera}', [CustomerController::class, 'edit'])->middleware('auth');
+//     Route::get('/delete/{customera}', [CustomerController::class, 'destroy'])->middleware('auth');
+    
+// });
+
+Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::get('/dashboard', function(){
         return view('auth.dashboard');
-    })->middleware('auth');
-    
+    });
     Route::get('/crud', function(){
         return view('customerfile.crud');
-    })->middleware('auth');
-    
-    Route::get('/edit/{customera}', [CustomerController::class, 'edit'])->middleware('auth');
-    Route::get('/delete/{customera}', [CustomerController::class, 'destroy'])->middleware('auth');
-    
+    });
+    Route::get('/edit/{customera}', [CustomerController::class, 'edit']);
+    Route::get('/delete/{customera}', [CustomerController::class, 'destroy']);
+    Route::get('/logs', [SiteController::class, 'logs']);
 });

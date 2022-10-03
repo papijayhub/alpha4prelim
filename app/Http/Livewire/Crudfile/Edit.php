@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Crudfile;
 
 use Livewire\Component;
 use App\Models\Customer;
+use App\Events\UserLog;
 
 class Edit extends Component
 {
@@ -39,6 +40,10 @@ class Edit extends Component
             'amountbalance' => $this->amountbalance,
             'assisted'   => $this->assisted,
         ]);
+
+        $log_entry = 'Updated customer ' . $this->customer->name . " with the ID " . $this->customer->id;
+        event(new UserLog($log_entry));
+
         return redirect('/crud')->with('message', 'Updated Successfuly');
     }
 
